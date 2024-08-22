@@ -1,0 +1,14 @@
+drop table if exists instagram_comments;
+CREATE TABLE instagram_comments (
+shortcode STRING,
+    username STRING,
+    comment_text STRING,
+    comment_Date STRING,
+Likes int,
+post_owner string)
+row format serde 'org.apache.hadoop.hive.serde2.OpenCSVSerde' 
+with serdeproperties("separatorChar"=",") 
+stored as textfile tblproperties("skip.header.line.count"="1");
+
+LOAD DATA LOCAL INPATH 'instagram_comments.csv' INTO TABLE instagram_comments;
+
